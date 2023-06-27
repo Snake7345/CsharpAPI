@@ -23,9 +23,9 @@ namespace CsharpAPI
 
             // Exemples de personnes
             modelBuilder.Entity<Personnes>().HasData(
-                new Personnes { IdPersonnes = 1, Nom = "Alice", IdLocalite = 1 },
-                new Personnes { IdPersonnes = 2, Nom = "Bob", IdLocalite = 2 },
-                new Personnes { IdPersonnes = 3, Nom = "Charlie", IdLocalite = 3 }
+                new Personnes { IdPersonne = 1, Nom = "Alice", LocaliteId = 1 },
+                new Personnes { IdPersonne = 2, Nom = "Bob", LocaliteId = 2 },
+                new Personnes { IdPersonne = 3, Nom = "Charlie", LocaliteId = 3 }
             );
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

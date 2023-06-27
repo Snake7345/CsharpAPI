@@ -5,6 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace CsharpAPI
 {
@@ -33,7 +37,15 @@ namespace CsharpAPI
                 });
             });
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver
+                    {
+                        NamingStrategy = new CamelCaseNamingStrategy()
+                    };
+                });
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

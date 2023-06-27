@@ -57,42 +57,42 @@ namespace CsharpAPI.Migrations
 
             modelBuilder.Entity("CsharpAPI.Class.Personnes", b =>
                 {
-                    b.Property<int>("IdPersonnes")
+                    b.Property<int>("IdPersonne")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPersonnes"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPersonne"), 1L, 1);
 
-                    b.Property<int>("IdLocalite")
+                    b.Property<int>("LocaliteId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nom")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IdPersonnes");
+                    b.HasKey("IdPersonne");
 
-                    b.HasIndex("IdLocalite");
+                    b.HasIndex("LocaliteId");
 
                     b.ToTable("Personnes");
 
                     b.HasData(
                         new
                         {
-                            IdPersonnes = 1,
-                            IdLocalite = 1,
+                            IdPersonne = 1,
+                            LocaliteId = 1,
                             Nom = "Alice"
                         },
                         new
                         {
-                            IdPersonnes = 2,
-                            IdLocalite = 2,
+                            IdPersonne = 2,
+                            LocaliteId = 2,
                             Nom = "Bob"
                         },
                         new
                         {
-                            IdPersonnes = 3,
-                            IdLocalite = 3,
+                            IdPersonne = 3,
+                            LocaliteId = 3,
                             Nom = "Charlie"
                         });
                 });
@@ -101,7 +101,7 @@ namespace CsharpAPI.Migrations
                 {
                     b.HasOne("CsharpAPI.Class.Localites", "Localite")
                         .WithMany("Personnes")
-                        .HasForeignKey("IdLocalite")
+                        .HasForeignKey("LocaliteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

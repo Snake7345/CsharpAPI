@@ -4,7 +4,7 @@
 
 namespace CsharpAPI.Migrations
 {
-    public partial class First : Migration
+    public partial class MyFirst : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,17 +25,17 @@ namespace CsharpAPI.Migrations
                 name: "Personnes",
                 columns: table => new
                 {
-                    IdPersonnes = table.Column<int>(type: "int", nullable: false)
+                    IdPersonne = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nom = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdLocalite = table.Column<int>(type: "int", nullable: false)
+                    LocaliteId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Personnes", x => x.IdPersonnes);
+                    table.PrimaryKey("PK_Personnes", x => x.IdPersonne);
                     table.ForeignKey(
-                        name: "FK_Personnes_Localites_IdLocalite",
-                        column: x => x.IdLocalite,
+                        name: "FK_Personnes_Localites_LocaliteId",
+                        column: x => x.LocaliteId,
                         principalTable: "Localites",
                         principalColumn: "IdLocalite",
                         onDelete: ReferentialAction.Cascade);
@@ -58,23 +58,23 @@ namespace CsharpAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "Personnes",
-                columns: new[] { "IdPersonnes", "IdLocalite", "Nom" },
+                columns: new[] { "IdPersonne", "LocaliteId", "Nom" },
                 values: new object[] { 1, 1, "Alice" });
 
             migrationBuilder.InsertData(
                 table: "Personnes",
-                columns: new[] { "IdPersonnes", "IdLocalite", "Nom" },
+                columns: new[] { "IdPersonne", "LocaliteId", "Nom" },
                 values: new object[] { 2, 2, "Bob" });
 
             migrationBuilder.InsertData(
                 table: "Personnes",
-                columns: new[] { "IdPersonnes", "IdLocalite", "Nom" },
+                columns: new[] { "IdPersonne", "LocaliteId", "Nom" },
                 values: new object[] { 3, 3, "Charlie" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Personnes_IdLocalite",
+                name: "IX_Personnes_LocaliteId",
                 table: "Personnes",
-                column: "IdLocalite");
+                column: "LocaliteId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

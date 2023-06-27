@@ -31,7 +31,7 @@ namespace CsharpAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Personnes>> GetPersonne(int id)
         {
-            var personne = await _context.Personnes.Include(p => p.Localite).FirstOrDefaultAsync(p => p.IdPersonnes == id);
+            var personne = await _context.Personnes.Include(p => p.Localite).FirstOrDefaultAsync(p => p.IdPersonne == id);
 
             if (personne == null)
             {
@@ -48,14 +48,14 @@ namespace CsharpAPI.Controllers
             _context.Personnes.Add(personne);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetPersonne), new { id = personne.IdPersonnes }, personne);
+            return CreatedAtAction(nameof(GetPersonne), new { id = personne.IdPersonne }, personne);
         }
 
         // PUT: api/Personnes/5
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePersonne(int id, Personnes personne)
         {
-            if (id != personne.IdPersonnes)
+            if (id != personne.IdPersonne)
             {
                 return BadRequest();
             }
@@ -99,7 +99,7 @@ namespace CsharpAPI.Controllers
 
         private bool PersonneExists(int id)
         {
-            return _context.Personnes.Any(p => p.IdPersonnes == id);
+            return _context.Personnes.Any(p => p.IdPersonne == id);
         }
     }
 }
