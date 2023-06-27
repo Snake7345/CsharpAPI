@@ -16,16 +16,16 @@ namespace CsharpAPI
         {
             // Exemples de localités
             modelBuilder.Entity<Localites>().HasData(
-                new Localites { Id = 1, Nom = "Paris" },
-                new Localites { Id = 2, Nom = "Lyon" },
-                new Localites { Id = 3, Nom = "Marseille" }
+                new Localites { IdLocalite = 1, Nom = "Paris" },
+                new Localites { IdLocalite = 2, Nom = "Lyon" },
+                new Localites { IdLocalite = 3, Nom = "Marseille" }
             );
 
             // Exemples de personnes
             modelBuilder.Entity<Personnes>().HasData(
-                new Personnes { Id = 1, Nom = "Alice", LocaliteId = 1 },
-                new Personnes { Id = 2, Nom = "Bob", LocaliteId = 2 },
-                new Personnes { Id = 3, Nom = "Charlie", LocaliteId = 3 }
+                new Personnes { IdPersonnes = 1, Nom = "Alice", IdLocalite = 1 },
+                new Personnes { IdPersonnes = 2, Nom = "Bob", IdLocalite = 2 },
+                new Personnes { IdPersonnes = 3, Nom = "Charlie", IdLocalite = 3 }
             );
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

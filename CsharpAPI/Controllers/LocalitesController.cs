@@ -46,14 +46,14 @@ namespace CsharpAPI.Controllers
             _context.Localites.Add(localite);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetLocalite), new { id = localite.Id }, localite);
+            return CreatedAtAction(nameof(GetLocalite), new { id = localite.IdLocalite }, localite);
         }
 
         // PUT: api/Localites/5
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateLocalite(int id, Localites localite)
         {
-            if (id != localite.Id)
+            if (id != localite.IdLocalite)
             {
                 return BadRequest();
             }
@@ -97,7 +97,7 @@ namespace CsharpAPI.Controllers
 
         private bool LocaliteExists(int id)
         {
-            return _context.Localites.Any(l => l.Id == id);
+            return _context.Localites.Any(l => l.IdLocalite == id);
         }
     }
 }
