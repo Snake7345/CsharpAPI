@@ -8,34 +8,32 @@ namespace CsharpAPI
         public DbSet<Personnes> Personnes { get; set; }
         public DbSet<Localites> Localites { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            optionsBuilder
-                //.UseLazyLoadingProxies()
-                .UseSqlServer("Server=PC-AXEL;Database=DB_TECHNOFUTUR;Trusted_Connection=True;MultipleActiveResultSets=true;Integrated Security=true;");
         }
+
         private void SeedData(ModelBuilder modelBuilder)
         {
-            // Exemples de localités
+            var localite1Id = Guid.NewGuid();
+            var localite2Id = Guid.NewGuid();
+            var localite3Id = Guid.NewGuid();
             modelBuilder.Entity<Localites>().HasData(
-                new Localites { IdLocalite = 1, Nom = "Paris" },
-                new Localites { IdLocalite = 2, Nom = "Lyon" },
-                new Localites { IdLocalite = 3, Nom = "Marseille" }
+                new Localites { IdLocalite = localite1Id, Nom = "Paris" },
+                new Localites { IdLocalite = localite2Id, Nom = "Lyon" },
+                new Localites { IdLocalite = localite3Id, Nom = "Marseille" }
             );
 
             // Exemples de personnes
             modelBuilder.Entity<Personnes>().HasData(
-                new Personnes { IdPersonne = 1, Nom = "Alice", LocaliteId = 1 },
-                new Personnes { IdPersonne = 2, Nom = "Bob", LocaliteId = 2 },
-                new Personnes { IdPersonne = 3, Nom = "Charlie", LocaliteId = 3 }
+                new Personnes { IdPersonne = Guid.NewGuid(), Nom = "Alice", LocaliteId = localite1Id },
+                new Personnes { IdPersonne = Guid.NewGuid(), Nom = "Bob", LocaliteId = localite2Id },
+                new Personnes { IdPersonne = Guid.NewGuid(), Nom = "Charlie", LocaliteId = localite3Id }
             );
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
-
             SeedData(modelBuilder);
         }
-
     }
 }

@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CsharpAPI.Class;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace CsharpAPI.Controllers
 {
-
-
     [Route("api/[controller]")]
     [ApiController]
     public class PersonnesController : ControllerBase
@@ -27,16 +26,16 @@ namespace CsharpAPI.Controllers
             return await _context.Personnes.Include(p => p.Localite).ToListAsync();
         }
 
-        // GET: api/Personnes
+        // GET: api/Personnes/bylocalite/{localiteId}
         [HttpGet("bylocalite/{localiteId}")]
-        public async Task<ActionResult<IEnumerable<Personnes>>> GetPersonnes(int localiteId)
+        public async Task<ActionResult<IEnumerable<Personnes>>> GetPersonnesByLocalite(Guid localiteId)
         {
             return await _context.Personnes.Where(p => p.LocaliteId == localiteId).Include(p => p.Localite).ToListAsync();
         }
 
-        // GET: api/Personnes/5
+        // GET: api/Personnes/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Personnes>> GetPersonne(int id)
+        public async Task<ActionResult<Personnes>> GetPersonne(Guid id)
         {
             var personne = await _context.Personnes.Include(p => p.Localite).FirstOrDefaultAsync(p => p.IdPersonne == id);
 
@@ -52,15 +51,16 @@ namespace CsharpAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Personnes>> CreatePersonne(Personnes personne)
         {
+            personne.IdPersonne = Guid.NewGuid();
             _context.Personnes.Add(personne);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetPersonne), new { id = personne.IdPersonne }, personne);
         }
 
-        // PUT: api/Personnes/5
+        // PUT: api/Personnes/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePersonne(int id, Personnes personne)
+        public async Task<IActionResult> UpdatePersonne(Guid id, Personnes personne)
         {
             if (id != personne.IdPersonne)
             {
@@ -88,9 +88,9 @@ namespace CsharpAPI.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Personnes/5
+        // DELETE: api/Personnes/{id}
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePersonne(int id)
+        public async Task<IActionResult> DeletePersonne(Guid id)
         {
             var personne = await _context.Personnes.FindAsync(id);
             if (personne == null)
@@ -104,7 +104,7 @@ namespace CsharpAPI.Controllers
             return NoContent();
         }
 
-        private bool PersonneExists(int id)
+        private bool PersonneExists(Guid id)
         {
             return _context.Personnes.Any(p => p.IdPersonne == id);
         }
