@@ -10,7 +10,9 @@ namespace CsharpAPI
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=PC-AXEL;Database=DB_TECHNOFUTUR;Trusted_Connection=True;MultipleActiveResultSets=true;Integrated Security=true;");
+            optionsBuilder
+                //.UseLazyLoadingProxies()
+                .UseSqlServer("Server=PC-AXEL;Database=DB_TECHNOFUTUR;Trusted_Connection=True;MultipleActiveResultSets=true;Integrated Security=true;");
         }
         private void SeedData(ModelBuilder modelBuilder)
         {
@@ -30,7 +32,7 @@ namespace CsharpAPI
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // ...
+            
 
             SeedData(modelBuilder);
         }

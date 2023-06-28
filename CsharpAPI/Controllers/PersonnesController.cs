@@ -27,6 +27,13 @@ namespace CsharpAPI.Controllers
             return await _context.Personnes.Include(p => p.Localite).ToListAsync();
         }
 
+        // GET: api/Personnes
+        [HttpGet("bylocalite/{localiteId}")]
+        public async Task<ActionResult<IEnumerable<Personnes>>> GetPersonnes(int localiteId)
+        {
+            return await _context.Personnes.Where(p => p.LocaliteId == localiteId).Include(p => p.Localite).ToListAsync();
+        }
+
         // GET: api/Personnes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Personnes>> GetPersonne(int id)

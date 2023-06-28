@@ -9,6 +9,6 @@ namespace CsharpAPI.Class
         public int IdPersonne { get; set; }
         public string Nom { get; set; }
         public int LocaliteId { get; set; }
-        public Localites Localite { get; set; }
+        public virtual Localites Localite { get; set; }
     }
 }
