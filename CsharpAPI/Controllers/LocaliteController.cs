@@ -10,25 +10,25 @@ namespace CsharpAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LocalitesController : ControllerBase
+    public class LocaliteController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public LocalitesController(AppDbContext context)
+        public LocaliteController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Localites
+        // GET: api/Localite
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Localites>>> GetLocalites()
+        public async Task<ActionResult<IEnumerable<Localite>>> GetLocalites()
         {
             return await _context.Localites.ToListAsync();
         }
 
-        // GET: api/Localites/{id}
+        // GET: api/Localite/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Localites>> GetLocalite(Guid id)
+        public async Task<ActionResult<Localite>> GetLocalite(Guid id)
         {
             var localite = await _context.Localites.FindAsync(id);
 
@@ -40,9 +40,9 @@ namespace CsharpAPI.Controllers
             return localite;
         }
 
-        // POST: api/Localites
+        // POST: api/Localite
         [HttpPost]
-        public async Task<ActionResult<Localites>> CreateLocalite(Localites localite)
+        public async Task<ActionResult<Localite>> CreateLocalite(Localite localite)
         {
             localite.IdLocalite = Guid.NewGuid();
             _context.Localites.Add(localite);
@@ -51,9 +51,9 @@ namespace CsharpAPI.Controllers
             return CreatedAtAction(nameof(GetLocalite), new { id = localite.IdLocalite }, localite);
         }
 
-        // PUT: api/Localites/{id}
+        // PUT: api/Localite/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateLocalite(Guid id, Localites localite)
+        public async Task<IActionResult> UpdateLocalite(Guid id, Localite localite)
         {
             if (id != localite.IdLocalite)
             {
@@ -81,7 +81,7 @@ namespace CsharpAPI.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Localites/{id}
+        // DELETE: api/Localite/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLocalite(Guid id)
         {
