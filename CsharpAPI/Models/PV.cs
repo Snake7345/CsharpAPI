@@ -2,6 +2,7 @@
 
 namespace CsharpAPI.Models
 {
+#nullable disable
     public class PV
     {
         [Required]

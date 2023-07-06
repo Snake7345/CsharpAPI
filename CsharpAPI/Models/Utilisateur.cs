@@ -3,18 +3,23 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CsharpAPI.Models
 {
+#nullable disable
     public class Utilisateur
     {
         [Key]
         [Required]
         public Guid IdUtilisateur { get; set; }
         [Required]
+        [MaxLength(90)]
         public string Nom { get; set; }
         [Required]
+        [MaxLength(90)]
         public string Prenom { get; set; }
         [Required]
+        [MaxLength(90)]
         public string Mail { get; set; }
         [Required]
+        [MaxLength(150)]
         public string Password { get; set; }
         [Required]
         public string Photo { get; set; }
@@ -28,5 +33,10 @@ namespace CsharpAPI.Models
         [Required]
         public Guid LocaliteId { get; set; }
         public virtual Localite Localite { get; set; }
+
+        public Utilisateur()
+        {
+            Actif = true;
+        }
     }
 }

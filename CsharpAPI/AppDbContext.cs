@@ -5,7 +5,7 @@ namespace CsharpAPI
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<Localite> Localite { get; set; }
+        public DbSet<Localite> Localite { get; set; } = null!;
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -92,13 +92,16 @@ namespace CsharpAPI
                 }
             }
 
-            // Sort localites by Ville in ascending order
-            localites = localites.OrderBy(l => l.Ville).ToList();
-
-            // Add localites to modelBuilder in the sorted order
-            foreach (var localite in localites)
+            if (localites != null)
             {
-                modelBuilder.Entity<Localite>().HasData(localite);
+                // Sort localites by Ville in ascending order
+                localites = localites.OrderBy(l => l.Ville).ToList();
+
+                // Add localites to modelBuilder in the sorted order
+                foreach (var localite in localites)
+                {
+                    modelBuilder.Entity<Localite>().HasData(localite);
+                }
             }
         }
     }

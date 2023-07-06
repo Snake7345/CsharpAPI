@@ -2,6 +2,7 @@
 
 namespace CsharpAPI.Models
 {
+#nullable disable
     public class Amitie
     {
         [Key]
@@ -19,5 +20,12 @@ namespace CsharpAPI.Models
         [Required]
         public Guid DestinateurUtilisateurId { get; set; }
         public virtual Utilisateur Destinateur { get; set; }
+        public Amitie()
+        {
+            Accepte = false;
+            Refuse = false;
+            Attente = true;
+        }
     }
+
 }
