@@ -1,11 +1,21 @@
 ﻿using CsharpAPI.Class;
+using CsharpAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CsharpAPI
 {
     public class AppDbContext : DbContext
     {
+        
+        public DbSet<Amitie> Amitie { get; set; } = null!;
+        public DbSet<Commentaire> Commentaire { get; set; } = null!;
+        public DbSet<Contenu> Contenu { get; set; } = null!;
+        public DbSet<Like> Like { get; set; } = null!;
         public DbSet<Localite> Localite { get; set; } = null!;
+        public DbSet<Publication> Publication { get; set; } = null!;
+        public DbSet<PV> PV { get; set; } = null!;
+        public DbSet<Travail> Travail { get; set; } = null!;
+        public DbSet<Utilisateur> Utilisateur { get; set; } = null!;
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
