@@ -5,6 +5,7 @@ namespace CsharpAPI.Models
 #nullable disable
     public class Publication
     {
+        [Key]
         [Required]
         public Guid IdPublication { get; set; }
         public Guid? LikeId { get; set; }

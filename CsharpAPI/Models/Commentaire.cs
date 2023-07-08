@@ -5,6 +5,7 @@ namespace CsharpAPI.Models
 #nullable disable
     public class Commentaire
     {
+        [Key]
         [Required]
         public Guid IdCommentaire { get; set; }
         [Required]

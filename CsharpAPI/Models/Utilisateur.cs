@@ -1,4 +1,5 @@
 ﻿using CsharpAPI.Class;
+using CsharpAPI.Enum;
 using System.ComponentModel.DataAnnotations;
 
 namespace CsharpAPI.Models
@@ -21,6 +22,8 @@ namespace CsharpAPI.Models
         [Required]
         [MaxLength(150)]
         public string Password { get; set; }
+        [Required]
+        public Sexe Sexe { get; set; }
         [Required]
         public string Photo { get; set; }
         [Required]

@@ -7,6 +7,7 @@ namespace CsharpAPI.Models
 #nullable disable
     public class Contenu
     {
+        [Key]
         [Required]
         public Guid IdContenu { get; set; }
         [Required]

@@ -5,6 +5,7 @@ namespace CsharpAPI.Models
 #nullable disable
     public class PV
     {
+        [Key]
         [Required]
         public Guid IdPV { get; set; }
         [Required]
