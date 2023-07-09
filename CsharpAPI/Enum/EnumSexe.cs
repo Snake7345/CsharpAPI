@@ -3,7 +3,7 @@
     public enum Sexe
     {
         Masculin,
-        Féminin,
+        Feminin,
         X
     }
 }
