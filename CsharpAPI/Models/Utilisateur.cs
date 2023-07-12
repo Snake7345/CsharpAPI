@@ -36,6 +36,9 @@ namespace CsharpAPI.Models
         [Required]
         public Guid LocaliteId { get; set; }
         public virtual Localite Localite { get; set; }
+        [Required]
+        public Guid RoleId { get; set; }
+        public virtual Role Role { get; set; }
 
         public Utilisateur()
         {

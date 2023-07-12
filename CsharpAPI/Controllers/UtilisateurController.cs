@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CsharpAPI.Models;
 
@@ -47,7 +43,7 @@ namespace CsharpAPI.Controllers
             _context.Utilisateur.Add(utilisateur);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetUtilisateur), new { id = utilisateur.IdUtilisateur }, utilisateur);
+            return CreatedAtAction("GetUtilisateur", new { id = utilisateur.IdUtilisateur }, utilisateur);
         }
 
         // PUT: api/Utilisateur/{id}
